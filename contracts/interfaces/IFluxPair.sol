@@ -32,6 +32,7 @@ interface IFluxPair {
         address indexed to
     );
     event PoolSync(uint112 poolBalanceA, uint112 poolBalanceB);
+    event EmergencyWithdrawal(address indexed sender, address indexed token, address indexed to, uint amount);
 
     function SEED_LIQUIDITY() external pure returns (uint);
     function hub() external view returns (address);
