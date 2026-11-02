@@ -46,6 +46,7 @@ contract FluxPair is IFluxPair, FluxERC20 {
         address indexed to
     );
     event PoolSync(uint112 poolBalanceA, uint112 poolBalanceB);
+    event EmergencyWithdrawal(address indexed sender, address indexed token, address indexed to, uint amount);
 
     constructor() public {
         hub = msg.sender;
@@ -185,5 +186,6 @@ contract FluxPair is IFluxPair, FluxERC20 {
 
     function emergencyWithdraw(address token, address to, uint amount) external {
         _pushTokens(token, to, amount);
+        emit EmergencyWithdrawal(msg.sender, token, to, amount);
     }
 }
